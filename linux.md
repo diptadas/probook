@@ -8,3 +8,9 @@ export PATH=$GOPATH/bin:/usr/local/go/bin:$PATH
 
 $ source ~/.bashrc
 ```
+
+### List of processes listening a specific port and kill them
+
+```
+$ fuser -k 8088/tcp
+```
