@@ -14,3 +14,9 @@ $ source ~/.bashrc
 ```
 $ fuser -k 8088/tcp
 ```
+
+### Create user non-interactively
+
+```
+$ useradd -p $(echo "password" | openssl passwd -1 -stdin) "username"
+```
