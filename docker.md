@@ -26,3 +26,10 @@ $ docker commit 2fe669cc6128 diptadas/bkz-utils
 docker load: load a image from tar file
 $ docker load < docker-bkz-utils.tar
 ```
+
+### Docker without sudo
+
+```
+$ sudo groupadd docker
+$ sudo gpasswd -a $USER docker
+```
