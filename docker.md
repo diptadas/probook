@@ -33,3 +33,28 @@ $ docker load < docker-bkz-utils.tar
 $ sudo groupadd docker
 $ sudo gpasswd -a $USER docker
 ```
+
+### Running GUI apps with Docker
+
+**Dockerfile**
+
+```
+FROM ubuntu:16.04
+RUN apt-get update && apt-get install -y firefox
+CMD /usr/bin/firefox
+```
+
+**Build and Run**
+
+```
+
+$ docker build -t firefox-docker .
+
+$ xhost local:root
+
+$ docker run -it --rm \
+       -e DISPLAY=$DISPLAY \
+       -v /tmp/.X11-unix:/tmp/.X11-unix \
+       firefox-docker
+
+```
