@@ -8,7 +8,7 @@ $ docker rm $(docker ps -a -q)
 ### Remove all dangling images
 
 ```
-$ docker images --qf dangling=true | xargs --no-run-if-empty docker rmi
+$ docker images -qf dangling=true | xargs --no-run-if-empty docker rmi
 ```
 
 ### Export/import docker image/container
