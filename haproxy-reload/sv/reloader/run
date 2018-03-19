@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# reload when config changes
+while inotifywait -e close_write /etc/haproxy/haproxy.cfg; do
+	echo "haproxy config changed"
+  	sv reload haproxy
+done
