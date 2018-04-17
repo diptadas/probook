@@ -66,18 +66,28 @@ Available filters :
 Using epoll() as the polling mechanism.
 ```
 
+## Update /etc/hosts
+
+```console
+$ nano /etc/hosts
+
+127.0.0.1   voyager.appscode.test
+127.0.0.1   voyager.appscode.com
+127.0.0.1   voyager.appscode.org
+```
+
 ## Send request
 
 ```console
-$ curl -k --resolve voyager.appscode.test:8090:127.0.0.1 http://voyager.appscode.test:8090
+$ curl -k http://voyager.appscode.test:8090
 curl: (52) Empty reply from server
 
-$ curl -k --resolve voyager.appscode.test:8090:127.0.0.1 https://voyager.appscode.test:8090
+$ curl -k https://voyager.appscode.test:8090
 {"type":"http","host":"voyager.appscode.test:8090","serverPort":":6443","path":"/","method":"GET","headers":{"Accept":["*/*"],"User-Agent":["curl/7.47.0"]}}
 
-$ curl -k --resolve voyager.appscode.com:8090:127.0.0.1 https://voyager.appscode.com:8090
+$ curl -k https://voyager.appscode.com:8090
 {"type":"http","host":"voyager.appscode.com:8090","serverPort":":3443","path":"/","method":"GET","headers":{"Accept":["*/*"],"User-Agent":["curl/7.47.0"]}}
 
-$ curl -k --resolve voyager.appscode.org:8090:127.0.0.1 https://voyager.appscode.org:8090
+$ curl -k https://voyager.appscode.org:8090
 curl: (35) gnutls_handshake() failed: The TLS connection was non-properly terminated.
 ```
