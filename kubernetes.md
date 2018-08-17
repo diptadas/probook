@@ -11,3 +11,33 @@ A PodSpec has a **restartPolicy** field with possible values Always, OnFailure, 
 ```
 kubectl run nginx --image=nginx --port=80 --restart=[Always, OnFailure, Never]
 ```
+
+### Subject Access Review
+
+Service accounts authenticate with the username `system:serviceaccount:(NAMESPACE):(SERVICEACCOUNT)` and are assigned to the groups `system:serviceaccounts` and `system:serviceaccounts:(NAMESPACE)`.
+
+```console
+$ kubectl create rolebinding default-view --clusterrole=view --serviceaccount=default:default --namespace=default
+```
+
+```yaml
+kubectl create -f - -o yaml << EOF
+apiVersion: authorization.k8s.io/v1
+kind: SubjectAccessReview
+spec:
+  groups:
+  - system:serviceaccounts
+  - system:serviceaccounts:default
+  user: system:serviceaccount:default:default
+  resourceAttributes:
+    group: extensions
+    version: v1beta1
+    resource: deployments
+    namespace: default
+    verb: get
+EOF
+```
+
+```console
+$ kubectl auth can-i get deployments --namespace default --as system:serviceaccount:default:default
+```
