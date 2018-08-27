@@ -21,7 +21,7 @@ $ kubectl create rolebinding default-view --clusterrole=view --serviceaccount=de
 ```
 
 ```yaml
-kubectl create -f - -o yaml << EOF
+$ kubectl create -f - -o yaml << EOF
 apiVersion: authorization.k8s.io/v1
 kind: SubjectAccessReview
 spec:
@@ -40,4 +40,24 @@ EOF
 
 ```console
 $ kubectl auth can-i get deployments --namespace default --as system:serviceaccount:default:default
+```
+
+### Kubectl get json-path
+
+```yaml
+$ kubectl create -f - -o yaml << EOF
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: my-config
+  namespace: default
+data:
+  example.property.1: hello
+  example.property.2: world
+EOF
+```
+
+```console
+$ kubectl get configmap my-config -o jsonpath='{.data.example\.property\.1}'
+hello
 ```
