@@ -58,3 +58,10 @@ $ docker run -it --rm \
        firefox-docker
 
 ```
+
+### Run PostgreSQL and pgAdmin
+
+```
+$ docker run -p 5432:5432 -e POSTGRES_USER=docker -e POSTGRES_PASSWORD=docker -e POSTGRES_DB=docker postgres
+$ docker run -p 5050:80 -e PGADMIN_DEFAULT_EMAIL=admin@example.com -e PGADMIN_DEFAULT_PASSWORD=admin dpage/pgadmin4
+```
