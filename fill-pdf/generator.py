@@ -2,7 +2,7 @@
 
 from fillpdf import fillpdfs
 
-# fillpdfs.get_form_fields("template.pdf")
+print(fillpdfs.get_form_fields("template.pdf"))
 
 names = ['John De', 'Andrew Rob', "Mike Kyle"]
 date = '12 August 2021'
