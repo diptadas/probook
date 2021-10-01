@@ -50,6 +50,16 @@ fi
 antigen apply
 ```
 
+# Replace Text Edit as the default text editor
+
+```
+$ brew install duti
+$ duti -s com.microsoft.VSCode public.plain-text all
+```
+
+- https://apple.stackexchange.com/a/123954
+- https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/understanding_utis/understand_utis_conc/understand_utis_conc.html
+
 ## bits/stdc++ with g++
 
 - Create an empty `bits/stdc++.h` file in `/usr/local/include`
