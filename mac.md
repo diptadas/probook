@@ -11,13 +11,6 @@ $ curl -L git.io/antigen > ~/antigen.zsh
 - Edit `.zshrc`
 
 ```
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # Use antigen
 source $HOME/antigen.zsh
 
@@ -26,9 +19,12 @@ antigen use oh-my-zsh
 
 # Set theme
 # antigen theme robbyrussell
-# https://github.com/zsh-users/antigen/issues/675
-# use "exec zsh" instead of "source .zshrc"
-antigen theme romkatv/powerlevel10k
+# antigen theme romkatv/powerlevel10k
+
+# https://github.com/zsh-users/antigen/issues/675#issuecomment-452764451
+THEME=romkatv/powerlevel10k
+antigen list | grep $THEME; if [ $? -ne 0 ]; then antigen theme $THEME; fi
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -38,7 +34,6 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-syntax-highlighting
 
-# https://github.com/zsh-users/zsh-autosuggestions/issues/238#issuecomment-389324292
 # https://github.com/zsh-users/zsh-syntax-highlighting/issues/295#issuecomment-214581607
 zstyle ':bracketed-paste-magic' active-widgets '.self-*'
 
