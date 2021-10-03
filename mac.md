@@ -37,10 +37,6 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 # https://github.com/zsh-users/zsh-syntax-highlighting/issues/295#issuecomment-214581607
 zstyle ':bracketed-paste-magic' active-widgets '.self-*'
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    antigen bundle osx
-fi
-
 # Apply changes
 antigen apply
 ```
